@@ -1,10 +1,16 @@
-package br.com.user;
+package br.com.tutor;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity(name = "tbl_users")
-@Table(name = "tbl_users")
-public class User {
+@Entity(name = "tbl_tutor")
+@Table(name = "tbl_tutor")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Tutor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
