@@ -1,11 +1,11 @@
-package br.com.animais;
+package br.com.pet;
 
 
 import jakarta.persistence.*;
 
-@Entity(name = "tbl_animal")
-@Table(name = "tbl_animal")
-public class Animal {
+@Entity(name = "tbl_pet")
+@Table(name = "tbl_pet")
+public class Pet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,7 +15,7 @@ public class Animal {
     private String animalName;
 
     @Column(name = "txt_size")
-    private String animalSize;
+    private String size;
 
     @Column(name = "txt_personality")
     private String personality;

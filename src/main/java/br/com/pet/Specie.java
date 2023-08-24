@@ -1,4 +1,4 @@
-package br.com.animais;
+package br.com.pet;
 
 public enum Specie {
 
