@@ -55,7 +55,7 @@ public class TutorController {
     @PUT
     @Path("/{id}")
     @Transactional
-    public Response upgradeTutor(@PathParam("id") Long id, TutorDTO tutorDTO){
+    public Response updateTutor(@PathParam("id") Long id, TutorDTO tutorDTO){
         try{
             tutorService.updateTutor(id, tutorDTO);
             return Response.accepted().build();
@@ -69,7 +69,7 @@ public class TutorController {
     @PATCH
     @Path("/{id}")
     @Transactional
-    public Response upgradePartialTutor(@PathParam("id") Long id, TutorDTO tutorDTO){
+    public Response updatePartialTutor(@PathParam("id") Long id, TutorDTO tutorDTO){
         try{
             tutorService.updateTutor(id, tutorDTO);
             return Response.accepted().build();
