@@ -9,7 +9,7 @@ public class Pet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Column(name = "txt_name")
     private String animalName;

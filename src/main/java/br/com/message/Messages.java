@@ -9,7 +9,7 @@ public class Messages {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "int_id")
-    private Integer id;
+    private Long id;
 
     @Column(name = "txt_name_tutor")
     private String nameTutor;
