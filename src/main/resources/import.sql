@@ -1,1 +1,1 @@
-insert into tbl_tutor (id, txt_about, txt_city, txt_email, txt_password, txt_phone, txt_user) values (nextval('tbl_tutor_seq'),'qualquer coisa no about','Brasilia','email@teste.com', 'senha123456','55619876543', 'testetutor');
+insert into tbl_tutor (id, txt_about, txt_city, txt_email, txt_password, txt_phone, txt_username) values (nextval('tbl_tutor_seq'),'qualquer coisa no about','Brasilia','email@teste.com', 'senha123456','55619876543', 'testetutor');
