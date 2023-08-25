@@ -33,7 +33,8 @@ public class TutorController {
             tutorDTO = tutorService.searchTutorById(id);
         }
         catch (Exception e) {
-            Response.status(Response.Status.NOT_FOUND).entity(e.getMessage());
+            Log.info(e.getMessage()); //TODO Remover em producao
+            Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
 
         return tutorDTO;
@@ -41,14 +42,15 @@ public class TutorController {
 
     @POST
     @Transactional
+    @Produces(MediaType.TEXT_PLAIN)
     public Response createTutor(TutorDTO tutorDTO) {
         try{
             tutorService.createNewTutor(tutorDTO);
             return Response.ok().build();
         }
         catch (WebApplicationException e) {
-            Log.info(e.getMessage());
-            return Response.status(Response.Status.BAD_REQUEST).build();
+            Log.info(e.getMessage()); //TODO Remover em producao
+            return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
     }
 
