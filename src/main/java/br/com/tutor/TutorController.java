@@ -46,9 +46,9 @@ public class TutorController {
             tutorService.createNewTutor(tutorDTO);
             return Response.ok().build();
         }
-        catch (Exception e) {
-            Log.info("Not possible create new Tutor");
-            return Response.serverError().build();
+        catch (WebApplicationException e) {
+            Log.info(e.getMessage());
+            return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
 
@@ -66,10 +66,24 @@ public class TutorController {
         }
     }
 
+    @PATCH
+    @Path("/{id}")
+    @Transactional
+    public Response upgradePartialTutor(@PathParam("id") Long id, TutorDTO tutorDTO){
+        try{
+            tutorService.updateTutor(id, tutorDTO);
+            return Response.accepted().build();
+        }
+        catch (Exception e) {
+            Log.info("Tutor not Found");
+            return Response.serverError().build();
+        }
+    }
+
     @DELETE
     @Path("/{id}")
     @Transactional
-    public Response deleteTutor(@PathParam("id") Long id){
+    public Response deleteTutor(@PathParam("id") Long id) {
         try{
             tutorService.deleteTutor(id);
             return Response.accepted().build();

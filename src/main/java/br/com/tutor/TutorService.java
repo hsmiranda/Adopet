@@ -1,7 +1,10 @@
 package br.com.tutor;
 
+import io.quarkus.logging.Log;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.BadRequestException;
+import jakarta.ws.rs.WebApplicationException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +27,12 @@ public class TutorService {
         return tutorDTOS;
     }
 
-    public void createNewTutor(TutorDTO tutorDTO){
+    public void createNewTutor(TutorDTO tutorDTO) throws WebApplicationException {
+
+        if (tutorDTO.id() != null) {
+            throw new BadRequestException("Dont send ID in post");
+        }
+
         tutorRepository.persist(tutorParse.dtoToEntity(tutorDTO));
     }
 
@@ -40,6 +48,10 @@ public class TutorService {
         tutorEntity.setCelPhone(tutorDTO.celPhone());
 
         tutorRepository.persist(tutorEntity);
+    }
+
+    public void updateTutor(Long id, String field, String newData) {
+        Log.info("Aqui!");
     }
 
     public void deleteTutor(Long id) {
