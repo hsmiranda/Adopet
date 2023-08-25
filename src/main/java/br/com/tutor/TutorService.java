@@ -19,9 +19,7 @@ public class TutorService {
 
         List<TutorDTO> tutorDTOS = new ArrayList<>();
 
-        this.tutorRepository.findAll().stream().forEach(item -> {
-            tutorDTOS.add(tutorParse.entityToDTO(item));
-        });
+        this.tutorRepository.findAll().stream().forEach(item -> tutorDTOS.add(tutorParse.entityToDTO(item)));
 
         return tutorDTOS;
     }
@@ -30,8 +28,9 @@ public class TutorService {
         tutorRepository.persist(tutorParse.dtoToEntity(tutorDTO));
     }
 
-    public void updateTutor(TutorDTO tutorDTO) {
-        TutorEntity tutorEntity = tutorRepository.findById(tutorDTO.id());
+
+    public void updateTutor(Long id, TutorDTO tutorDTO) {
+        TutorEntity tutorEntity = tutorRepository.findById(id);
 
         tutorEntity.setCity(tutorDTO.city());
         tutorEntity.setName(tutorDTO.name());
@@ -47,8 +46,17 @@ public class TutorService {
         tutorRepository.deleteById(id);
     }
 
-    public TutorDTO searchTutorById(Long id) {
-        return tutorParse.entityToDTO(tutorRepository.findById(id));
+    public TutorDTO searchTutorById(Long id) throws Exception {
+
+        TutorDTO tutorDTO;
+
+        tutorDTO = tutorParse.entityToDTO(tutorRepository.findById(id));
+
+        if (tutorDTO == null) {
+            throw new Exception("Tutor not found");
+        }
+
+        return tutorDTO;
     }
 
 }
