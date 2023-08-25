@@ -1,7 +1,6 @@
 package br.com.tutor;
 
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.context.RequestScoped;
 
 @ApplicationScoped
 public class TutorParse {
@@ -26,7 +25,7 @@ public class TutorParse {
                 tutorDTO.name(),
                 tutorDTO.email(),
                 tutorDTO.password(),
-                tutorDTO.celPhone(),
+                tutorDTO.cellPhone(),
                 tutorDTO.city(),
                 tutorDTO.about()
         );

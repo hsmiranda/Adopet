@@ -45,7 +45,7 @@ public class TutorService {
         tutorEntity.setAbout(tutorDTO.about());
         tutorEntity.setEmail(tutorDTO.email());
         tutorEntity.setPassword(tutorDTO.password());
-        tutorEntity.setCelPhone(tutorDTO.celPhone());
+        tutorEntity.setCelPhone(tutorDTO.cellPhone());
 
         tutorRepository.persist(tutorEntity);
     }
