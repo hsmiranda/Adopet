@@ -16,7 +16,7 @@ public class Tutor {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "txt_user", nullable = false)
+    @Column(name = "txt_username", nullable = false)
     private String name;
 
     @Column(name = "txt_email", nullable = false)
