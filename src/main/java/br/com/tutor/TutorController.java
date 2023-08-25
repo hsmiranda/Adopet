@@ -3,6 +3,7 @@ package br.com.tutor;
 import io.quarkus.logging.Log;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -43,7 +44,7 @@ public class TutorController {
     @POST
     @Transactional
     @Produces(MediaType.TEXT_PLAIN)
-    public Response createTutor(TutorDTO tutorDTO) {
+    public Response createTutor(@Valid TutorDTO tutorDTO) {
         try{
             tutorService.createNewTutor(tutorDTO);
             return Response.ok().build();
@@ -57,7 +58,7 @@ public class TutorController {
     @PUT
     @Path("/{id}")
     @Transactional
-    public Response updateTutor(@PathParam("id") Long id, TutorDTO tutorDTO){
+    public Response updateTutor(@PathParam("id") Long id, @Valid TutorDTO tutorDTO){
         try{
             tutorService.updateTutor(id, tutorDTO);
             return Response.accepted().build();
@@ -71,7 +72,7 @@ public class TutorController {
     @PATCH
     @Path("/{id}")
     @Transactional
-    public Response updatePartialTutor(@PathParam("id") Long id, TutorDTO tutorDTO){
+    public Response updatePartialTutor(@PathParam("id") Long id, @Valid TutorDTO tutorDTO){
         try{
             tutorService.updateTutor(id, tutorDTO);
             return Response.accepted().build();
