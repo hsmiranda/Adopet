@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Tutor {
+public class TutorEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
