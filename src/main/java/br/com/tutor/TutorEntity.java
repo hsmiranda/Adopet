@@ -14,7 +14,7 @@ public class TutorEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Long id;
 
     @Column(name = "txt_username", nullable = false)
     private String name;

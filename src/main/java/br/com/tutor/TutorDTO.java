@@ -6,7 +6,7 @@ import lombok.extern.jackson.Jacksonized;
 
 @Jacksonized
 public record TutorDTO(
-        Integer id,
+        Long id,
         String name,
         String email,
         String password,
