@@ -1,5 +1,8 @@
 package br.com.abrigo;
 
+import jakarta.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
 public class AbrigoParse {
 
     public AbrigoDTO entityToDTO(AbrigoEntity abrigoEntity){
