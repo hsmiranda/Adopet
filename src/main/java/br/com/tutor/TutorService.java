@@ -1,6 +1,5 @@
 package br.com.tutor;
 
-import io.quarkus.logging.Log;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.BadRequestException;
@@ -45,13 +44,9 @@ public class TutorService {
         tutorEntity.setAbout(tutorDTO.about());
         tutorEntity.setEmail(tutorDTO.email());
         tutorEntity.setPassword(tutorDTO.password());
-        tutorEntity.setCelPhone(tutorDTO.celPhone());
+        tutorEntity.setCelPhone(tutorDTO.cellPhone());
 
         tutorRepository.persist(tutorEntity);
-    }
-
-    public void updateTutor(Long id, String field, String newData) {
-        Log.info("Aqui!");
     }
 
     public void deleteTutor(Long id) {
