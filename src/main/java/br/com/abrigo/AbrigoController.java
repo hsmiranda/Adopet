@@ -1,6 +1,5 @@
 package br.com.abrigo;
 
-import io.quarkus.logging.Log;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.ConstraintViolationException;
