@@ -48,4 +48,20 @@ public class AbrigoController {
         }
 
     }
+
+    @GET
+    @Path("/{id}")
+    public AbrigoDTO findAbrigoById(@PathParam("id") Long id){
+
+        AbrigoDTO abrigoDTO = null;
+
+        try{
+            abrigoDTO = this.abrigoService.findAbrigoById(id);
+        }
+        catch (Exception e) {
+            Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
+        }
+
+        return abrigoDTO;
+    }
 }

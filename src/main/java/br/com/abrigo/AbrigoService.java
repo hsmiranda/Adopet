@@ -42,4 +42,16 @@ public class AbrigoService {
             return this.abrigoParse.entityToDTO(a);
         }
     }
+
+    public AbrigoDTO findAbrigoById(Long id) throws Exception {
+
+        AbrigoDTO abrigoDTO = this.abrigoParse.entityToDTO(this.abrigoRepository.findById(id));
+
+        if (abrigoDTO == null) {
+            throw new Exception("Not found");
+        }
+
+        return abrigoDTO;
+    }
+
 }
