@@ -3,7 +3,6 @@ package br.com.abrigo;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.BadRequestException;
-import jakarta.ws.rs.WebApplicationException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +28,6 @@ public class AbrigoService {
 
         return abrigos;
     }
-
-    public void createAbrigo(AbrigoDTO abrigoDTO){
-        this.abrigoRepository.persist(this.abrigoParse.dtoToEntity(abrigoDTO));
-    }
-
 
     public void createNewAbrigo(AbrigoDTO abrigoDTO) {
 
