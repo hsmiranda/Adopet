@@ -1,6 +1,5 @@
 package br.com.abrigo;
 
-import br.com.tutor.TutorDTO;
 import io.quarkus.logging.Log;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -10,7 +9,6 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-import javax.print.attribute.standard.Media;
 import java.util.List;
 
 
