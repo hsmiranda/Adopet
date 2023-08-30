@@ -33,14 +33,12 @@ public class AbrigoController {
         }
 
         catch (ConstraintViolationException e){
-            Log.info(e.getMessage()); //TODO Remover em producao
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity(e.getConstraintViolations())
                     .build();
         }
 
         catch (WebApplicationException e) {
-            Log.info(e.getMessage()); //TODO Remover em producao
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity(e.getMessage())
                     .build();

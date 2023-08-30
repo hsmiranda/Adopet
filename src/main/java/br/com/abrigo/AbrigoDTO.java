@@ -12,7 +12,7 @@ public record AbrigoDTO(
 
         @NotBlank(message = "Name is not be blank")
         @NotEmpty(message = "Please enter your UserName")
-        //@Pattern(regexp = "^[A-Za-z]+$", message = "Only accept alphanumeric characters") //TODO check with space char
+        //@Pattern(regexp = "^[A-Za-z]+$", message = "Only accept alphanumeric characters")
         String name,
 
         @NotBlank(message = "City is not be blank")
