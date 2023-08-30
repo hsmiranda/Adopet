@@ -6,8 +6,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
-import javax.print.attribute.standard.MediaSize;
-
 @Entity(name = "tbl_pet")
 @Table(name = "tbl_pet")
 public class PetEntity {
