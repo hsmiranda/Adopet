@@ -1,5 +1,6 @@
 package br.com.abrigo;
 
+import br.com.tutor.TutorDTO;
 import io.quarkus.logging.Log;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -9,6 +10,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+import javax.print.attribute.standard.Media;
 import java.util.List;
 
 
@@ -27,6 +29,7 @@ public class AbrigoController {
 
     @POST
     @Transactional
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response createAbrigo(@Valid AbrigoDTO abrigoDTO) {
         try{
             abrigoDTO = this.abrigoService.createNewAbrigo(abrigoDTO);
@@ -52,6 +55,7 @@ public class AbrigoController {
 
     @GET
     @Path("/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
     public AbrigoDTO findAbrigoById(@PathParam("id") Long id){
 
         AbrigoDTO abrigoDTO = null;
@@ -65,5 +69,35 @@ public class AbrigoController {
         }
 
         return abrigoDTO;
+    }
+
+    @PUT
+    @Path("/{id}")
+    @Transactional
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateAbrigo(@PathParam("id") Long id, @Valid AbrigoDTO abrigoDTO){
+
+        try{
+            this.abrigoService.updateAbrido(id, abrigoDTO);
+            return Response.accepted().build();
+        }
+        catch (Exception e) {
+            Log.info("Abrigo not Found");
+            return Response.serverError().build();
+        }
+    }
+
+    @PATCH
+    @Path("/{id}")
+    @Transactional
+    public Response updatePartialTutor(@PathParam("id") Long id, @Valid AbrigoDTO abrigoDTO){
+        try{
+            this.abrigoService.updateAbrido(id, abrigoDTO);
+            return Response.accepted().build();
+        }
+        catch (Exception e) {
+            Log.info("Abrido ID not Found");
+            return Response.serverError().build();
+        }
     }
 }
