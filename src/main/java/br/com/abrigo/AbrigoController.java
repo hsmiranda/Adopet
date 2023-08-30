@@ -12,6 +12,7 @@ import java.util.List;
 
 
 @Path("/api/v1/abrigo")
+@Produces(MediaType.APPLICATION_JSON)
 public class AbrigoController {
 
     @Inject
@@ -27,13 +28,16 @@ public class AbrigoController {
     @Transactional
     public Response createAbrigo(@Valid AbrigoDTO abrigoDTO) {
         try{
-            this.abrigoService.createNewAbrigo(abrigoDTO);
-            return Response.ok().build();
+            abrigoDTO = this.abrigoService.createNewAbrigo(abrigoDTO);
+
+            return Response.status(Response.Status.CREATED)
+                    .entity(abrigoDTO)
+                    .build();
         }
 
         catch (ConstraintViolationException e){
-            return Response.status(Response.Status.BAD_REQUEST)
-                    .entity(e.getConstraintViolations())
+            return Response.status(Response.Status.NOT_ACCEPTABLE)
+                    .entity("Invalid information, please resend with correct data")
                     .build();
         }
 
@@ -42,5 +46,6 @@ public class AbrigoController {
                     .entity(e.getMessage())
                     .build();
         }
+
     }
 }

@@ -29,12 +29,17 @@ public class AbrigoService {
         return abrigos;
     }
 
-    public void createNewAbrigo(AbrigoDTO abrigoDTO) {
+    public AbrigoDTO createNewAbrigo(AbrigoDTO abrigoDTO) {
 
         if(abrigoDTO.id() != null) {
             throw new BadRequestException("Dont send ID in post");
         }
+        else {
+            AbrigoEntity a = this.abrigoParse.dtoToEntity(abrigoDTO);
 
-        this.abrigoRepository.persist(abrigoParse.dtoToEntity(abrigoDTO));
+            this.abrigoRepository.persist(a);
+
+            return this.abrigoParse.entityToDTO(a);
+        }
     }
 }
