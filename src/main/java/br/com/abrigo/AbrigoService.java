@@ -67,9 +67,6 @@ public class AbrigoService {
         abrigo.setName(abrigoDTO.name());
         abrigo.setPhone(abrigoDTO.phone());
         this.repository.persist(abrigo);
-
         return this.parse.entityToDTO(abrigo);
-
     }
-
 }

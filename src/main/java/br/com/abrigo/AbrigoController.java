@@ -94,7 +94,7 @@ public class AbrigoController {
             return Response.accepted().build();
         }
         catch (Exception e) {
-            Log.info("Abrido ID not Found");
+            Log.info("Abrigo ID not Found");
             return Response.serverError().build();
         }
     }
