@@ -27,6 +27,7 @@ public class AbrigoController {
 
     @POST
     @Transactional
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response createAbrigo(@Valid AbrigoDTO abrigoDTO) {
         try{
             abrigoDTO = this.abrigoService.createNewAbrigo(abrigoDTO);
@@ -52,6 +53,7 @@ public class AbrigoController {
 
     @GET
     @Path("/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
     public AbrigoDTO findAbrigoById(@PathParam("id") Long id){
 
         AbrigoDTO abrigoDTO = null;
@@ -65,5 +67,35 @@ public class AbrigoController {
         }
 
         return abrigoDTO;
+    }
+
+    @PUT
+    @Path("/{id}")
+    @Transactional
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateAbrigo(@PathParam("id") Long id, @Valid AbrigoDTO abrigoDTO){
+
+        try{
+            this.abrigoService.updateAbrido(id, abrigoDTO);
+            return Response.accepted().build();
+        }
+        catch (Exception e) {
+            Log.info("Abrigo not Found");
+            return Response.serverError().build();
+        }
+    }
+
+    @PATCH
+    @Path("/{id}")
+    @Transactional
+    public Response updatePartialTutor(@PathParam("id") Long id, @Valid AbrigoDTO abrigoDTO){
+        try{
+            this.abrigoService.updateAbrido(id, abrigoDTO);
+            return Response.accepted().build();
+        }
+        catch (Exception e) {
+            Log.info("Abrigo ID not Found");
+            return Response.serverError().build();
+        }
     }
 }
