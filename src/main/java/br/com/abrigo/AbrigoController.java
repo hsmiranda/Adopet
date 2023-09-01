@@ -12,32 +12,32 @@ import jakarta.ws.rs.core.Response;
 import java.util.List;
 
 
-@Path("/api/v1/abrigo")
+@Path("/api/v1/abrigos")
 @Produces(MediaType.APPLICATION_JSON)
 public class AbrigoController {
 
     @Inject
-    AbrigoService abrigoService;
+    AbrigoService service;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<AbrigoDTO> findAllAbrigos(){
-        return this.abrigoService.listAllAbrigos();
+    public List<AbrigoDTO> findAll(){
+        return this.service.listAllAbrigos();
     }
 
     @POST
     @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response createAbrigo(@Valid AbrigoDTO abrigoDTO) {
+    public Response create(@Valid AbrigoDTO abrigoDTO) {
         try{
-            abrigoDTO = this.abrigoService.createNewAbrigo(abrigoDTO);
+            abrigoDTO = this.service.createNewAbrigo(abrigoDTO);
 
             return Response.status(Response.Status.CREATED)
                     .entity(abrigoDTO)
                     .build();
         }
 
-        catch (ConstraintViolationException e){
+        catch (ConstraintViolationException e) {
             return Response.status(Response.Status.NOT_ACCEPTABLE)
                     .entity("Invalid information, please resend with correct data")
                     .build();
@@ -54,12 +54,12 @@ public class AbrigoController {
     @GET
     @Path("/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public AbrigoDTO findAbrigoById(@PathParam("id") Long id){
+    public AbrigoDTO findById(@PathParam("id") Long id) {
 
         AbrigoDTO abrigoDTO = null;
 
         try{
-            abrigoDTO = this.abrigoService.findAbrigoById(id);
+            abrigoDTO = this.service.findAbrigoById(id);
         }
         catch (Exception e) {
             Log.info(e.getMessage());
@@ -73,10 +73,10 @@ public class AbrigoController {
     @Path("/{id}")
     @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response updateAbrigo(@PathParam("id") Long id, @Valid AbrigoDTO abrigoDTO){
+    public Response updateFull(@PathParam("id") Long id, @Valid AbrigoDTO abrigoDTO) {
 
         try{
-            this.abrigoService.updateAbrido(id, abrigoDTO);
+            this.service.updateAbrido(id, abrigoDTO);
             return Response.accepted().build();
         }
         catch (Exception e) {
@@ -88,14 +88,30 @@ public class AbrigoController {
     @PATCH
     @Path("/{id}")
     @Transactional
-    public Response updatePartialTutor(@PathParam("id") Long id, @Valid AbrigoDTO abrigoDTO){
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updatePartial(@PathParam("id") Long id, @Valid AbrigoDTO abrigoDTO) {
         try{
-            this.abrigoService.updateAbrido(id, abrigoDTO);
+            this.service.updateAbrido(id, abrigoDTO);
             return Response.accepted().build();
         }
         catch (Exception e) {
             Log.info("Abrigo ID not Found");
             return Response.serverError().build();
+        }
+    }
+
+    @DELETE
+    @Path("/{id}")
+    @Transactional
+    public Response delete(@PathParam("id") Long id){
+        try {
+            this.service.delete(id);
+            return Response.accepted().build();
+        }
+        catch (Exception e){
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity(e.getMessage())
+                    .build();
         }
     }
 }
