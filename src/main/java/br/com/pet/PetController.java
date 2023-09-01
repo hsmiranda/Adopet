@@ -60,7 +60,7 @@ public class PetController {
     @Transactional
     public Response updatePartial(@PathParam("id") Long id, @Valid PetDTO petDTO){
         try{
-            service.updatePartial(id, petDTO);
+            service.update(id, petDTO);
             return Response.accepted().build();
         }
         catch (Exception e) {

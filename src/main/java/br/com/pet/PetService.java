@@ -1,6 +1,5 @@
 package br.com.pet;
 
-import br.com.abrigo.AbrigoEntity;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.BadRequestException;
@@ -21,7 +20,6 @@ public class PetService {
     public List<PetDTO> listAll() {
 
         List<PetDTO> petDTOS = new ArrayList<>();
-        List<PetEntity> teste = this.repository.findAll().stream().toList();
 
         this.repository.findAll().stream().forEach(
                 petEntity -> petDTOS.add(this.parse.entityToDto(petEntity))
@@ -63,9 +61,9 @@ public class PetService {
 
     }
 
-    public void updatePartial(Long id, PetDTO petDTO) {
-    }
-
-    public void delete(Long id) {
+    public void delete(Long id) throws Exception {
+        if(!this.repository.deleteById(id)){
+            throw new Exception("ID not found");
+        }
     }
 }
