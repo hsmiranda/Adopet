@@ -60,13 +60,20 @@ public class AbrigoService {
         AbrigoEntity abrigo = this.repository.findById(id);
 
         if(abrigo == null) {
-            throw new Exception("ID not found");
+            throw new Exception("Abrigo ID not found");
         }
 
         abrigo.setCity(abrigoDTO.city());
         abrigo.setName(abrigoDTO.name());
         abrigo.setPhone(abrigoDTO.phone());
         this.repository.persist(abrigo);
+
         return this.parse.entityToDTO(abrigo);
+    }
+
+    public void delete(Long id) throws Exception {
+        if(!this.repository.deleteById(id)){
+            throw new Exception("ID not found");
+        }
     }
 }

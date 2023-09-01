@@ -1,6 +1,5 @@
 package br.com.tutor;
 
-import io.quarkus.logging.Log;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -16,12 +15,12 @@ import java.util.List;
 public class TutorController {
 
     @Inject
-    TutorService tutorService;
+    TutorService service;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<TutorDTO> findAllTutors(){
-        return tutorService.findAllTutors();
+        return service.findAllTutors();
     }
 
     @GET
@@ -31,10 +30,9 @@ public class TutorController {
         TutorDTO tutorDTO = null;
 
         try{
-            tutorDTO = tutorService.searchTutorById(id);
+            tutorDTO = service.searchTutorById(id);
         }
         catch (Exception e) {
-            Log.info(e.getMessage()); //TODO Remover em producao
             Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
 
@@ -46,11 +44,10 @@ public class TutorController {
     @Produces(MediaType.TEXT_PLAIN)
     public Response createTutor(@Valid TutorDTO tutorDTO) {
         try{
-            tutorService.createNewTutor(tutorDTO);
+            service.createNewTutor(tutorDTO);
             return Response.ok().build();
         }
         catch (WebApplicationException e) {
-            Log.info(e.getMessage()); //TODO Remover em producao
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
     }
@@ -60,11 +57,10 @@ public class TutorController {
     @Transactional
     public Response updateTutor(@PathParam("id") Long id, @Valid TutorDTO tutorDTO){
         try{
-            tutorService.updateTutor(id, tutorDTO);
+            service.updateTutor(id, tutorDTO);
             return Response.accepted().build();
         }
         catch (Exception e) {
-            Log.info("Tutor not Found");
             return Response.serverError().build();
         }
     }
@@ -74,11 +70,10 @@ public class TutorController {
     @Transactional
     public Response updatePartialTutor(@PathParam("id") Long id, @Valid TutorDTO tutorDTO){
         try{
-            tutorService.updateTutor(id, tutorDTO);
+            service.updateTutor(id, tutorDTO);
             return Response.accepted().build();
         }
         catch (Exception e) {
-            Log.info("Tutor not Found");
             return Response.serverError().build();
         }
     }
@@ -88,11 +83,10 @@ public class TutorController {
     @Transactional
     public Response deleteTutor(@PathParam("id") Long id) {
         try{
-            tutorService.deleteTutor(id);
+            service.deleteTutor(id);
             return Response.accepted().build();
         }
         catch (Exception e) {
-            Log.info("Not possible remove tutor");
             return Response.serverError().build();
         }
     }
