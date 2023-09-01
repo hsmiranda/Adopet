@@ -10,5 +10,4 @@ public enum SpecieEnum {
     SpecieEnum(String specieValue) {
         this.specieValue = specieValue;
     }
-
 }

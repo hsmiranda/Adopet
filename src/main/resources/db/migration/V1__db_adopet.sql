@@ -13,7 +13,9 @@ create sequence tbl_pet_seq increment by 50;
 
 alter sequence tbl_pet_seq owner to postgres;
 
-CREATE TYPE enum_specie AS ENUM ('Dog', 'Cat');
+create type enum_specie as enum ('DOG', 'CAT');
+
+alter type enum_specie owner to postgres;
 
 create table tbl_pet
 (
