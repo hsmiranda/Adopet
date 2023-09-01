@@ -14,7 +14,8 @@ public class PetParse {
                 petEntity.getDescription(),
                 petEntity.getSpecie(),
                 petEntity.getAbrigo(),
-                petEntity.getAdotado()
+                petEntity.getAdotado(),
+                petEntity.getUrlPhoto()
 
         );
     }
@@ -27,6 +28,8 @@ public class PetParse {
                 petDTO.description(),
                 petDTO.specie(),
                 petDTO.abrigo(),
-                petDTO.adotado());
+                petDTO.adotado(),
+                petDTO.urlFoto()
+        );
     }
 }
