@@ -42,7 +42,25 @@ public class PetService {
         }
     }
 
-    public void update(Long id, PetDTO petDTO) {
+    public PetDTO update(Long id, PetDTO petDTO) throws Exception {
+
+        PetEntity p = this.repository.findById(id);
+
+        if(p == null) {
+            throw new Exception("Pet ID not found");
+        }
+
+        p.setName(petDTO.name());
+        p.setAge(petDTO.age());
+        p.setAbrigo(petDTO.abrigo());
+        p.setSize(petDTO.size());
+        p.setAdotado(petDTO.adotado());
+        p.setUrlPhoto(petDTO.urlFoto());
+
+        this.repository.persist(p);
+
+        return this.parse.entityToDto(p);
+
     }
 
     public void updatePartial(Long id, PetDTO petDTO) {

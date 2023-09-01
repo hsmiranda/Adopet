@@ -28,6 +28,7 @@ create table tbl_pet
     txt_size        varchar(255) not null,
     fk_abrigo_id    bigint not null,
     bl_adotado      boolean default true,
+    txt_url_photo   varchar(255) not null,
     foreign key (fk_abrigo_id) references tbl_abrigo (pk_long_id)
 );
 

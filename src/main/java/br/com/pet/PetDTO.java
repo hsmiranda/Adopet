@@ -15,6 +15,7 @@ public record PetDTO(
         String description,
         SpecieEnum specie,
         AbrigoEntity abrigo,
-        Boolean adotado
+        Boolean adotado,
+        String urlFoto
 ) {
 }

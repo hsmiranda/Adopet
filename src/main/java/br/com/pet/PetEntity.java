@@ -52,4 +52,7 @@ public class PetEntity {
     @Column(name = "bl_adotado", columnDefinition = "boolean default true")
     private Boolean adotado;
 
+    @Column(name = "txt_url_photo", nullable = false)
+    private String urlPhoto;
+
 }
