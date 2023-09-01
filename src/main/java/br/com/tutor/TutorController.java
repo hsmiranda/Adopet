@@ -16,12 +16,12 @@ import java.util.List;
 public class TutorController {
 
     @Inject
-    TutorService tutorService;
+    TutorService service;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<TutorDTO> findAllTutors(){
-        return tutorService.findAllTutors();
+        return service.findAllTutors();
     }
 
     @GET
@@ -31,7 +31,7 @@ public class TutorController {
         TutorDTO tutorDTO = null;
 
         try{
-            tutorDTO = tutorService.searchTutorById(id);
+            tutorDTO = service.searchTutorById(id);
         }
         catch (Exception e) {
             Log.info(e.getMessage()); //TODO Remover em producao
@@ -46,7 +46,7 @@ public class TutorController {
     @Produces(MediaType.TEXT_PLAIN)
     public Response createTutor(@Valid TutorDTO tutorDTO) {
         try{
-            tutorService.createNewTutor(tutorDTO);
+            service.createNewTutor(tutorDTO);
             return Response.ok().build();
         }
         catch (WebApplicationException e) {
@@ -60,7 +60,7 @@ public class TutorController {
     @Transactional
     public Response updateTutor(@PathParam("id") Long id, @Valid TutorDTO tutorDTO){
         try{
-            tutorService.updateTutor(id, tutorDTO);
+            service.updateTutor(id, tutorDTO);
             return Response.accepted().build();
         }
         catch (Exception e) {
@@ -74,7 +74,7 @@ public class TutorController {
     @Transactional
     public Response updatePartialTutor(@PathParam("id") Long id, @Valid TutorDTO tutorDTO){
         try{
-            tutorService.updateTutor(id, tutorDTO);
+            service.updateTutor(id, tutorDTO);
             return Response.accepted().build();
         }
         catch (Exception e) {
@@ -88,7 +88,7 @@ public class TutorController {
     @Transactional
     public Response deleteTutor(@PathParam("id") Long id) {
         try{
-            tutorService.deleteTutor(id);
+            service.deleteTutor(id);
             return Response.accepted().build();
         }
         catch (Exception e) {

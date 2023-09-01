@@ -12,16 +12,16 @@ import java.util.List;
 public class TutorService {
 
     @Inject
-    TutorRepository tutorRepository;
+    TutorRepository repository;
 
     @Inject
-    TutorParse tutorParse;
+    TutorParse parse;
 
     public List<TutorDTO> findAllTutors() {
 
         List<TutorDTO> tutorDTOS = new ArrayList<>();
 
-        this.tutorRepository.findAll().stream().forEach(item -> tutorDTOS.add(tutorParse.entityToDTO(item)));
+        this.repository.findAll().stream().forEach(item -> tutorDTOS.add(parse.entityToDTO(item)));
 
         return tutorDTOS;
     }
@@ -32,12 +32,12 @@ public class TutorService {
             throw new BadRequestException("Dont send ID in post");
         }
 
-        tutorRepository.persist(tutorParse.dtoToEntity(tutorDTO));
+        repository.persist(parse.dtoToEntity(tutorDTO));
     }
 
 
     public void updateTutor(Long id, TutorDTO tutorDTO) {
-        TutorEntity tutorEntity = tutorRepository.findById(id);
+        TutorEntity tutorEntity = repository.findById(id);
 
         tutorEntity.setCity(tutorDTO.city());
         tutorEntity.setName(tutorDTO.name());
@@ -46,18 +46,18 @@ public class TutorService {
         tutorEntity.setPassword(tutorDTO.password());
         tutorEntity.setCelPhone(tutorDTO.cellPhone());
 
-        tutorRepository.persist(tutorEntity);
+        repository.persist(tutorEntity);
     }
 
     public void deleteTutor(Long id) {
-        tutorRepository.deleteById(id);
+        repository.deleteById(id);
     }
 
     public TutorDTO searchTutorById(Long id) throws Exception {
 
         TutorDTO tutorDTO;
 
-        tutorDTO = tutorParse.entityToDTO(tutorRepository.findById(id));
+        tutorDTO = parse.entityToDTO(repository.findById(id));
 
         if (tutorDTO == null) {
             throw new Exception("Tutor not found");
