@@ -1,6 +1,5 @@
 package br.com.tutor;
 
-import io.quarkus.logging.Log;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -34,7 +33,6 @@ public class TutorController {
             tutorDTO = service.searchTutorById(id);
         }
         catch (Exception e) {
-            Log.info(e.getMessage()); //TODO Remover em producao
             Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
 
@@ -50,7 +48,6 @@ public class TutorController {
             return Response.ok().build();
         }
         catch (WebApplicationException e) {
-            Log.info(e.getMessage()); //TODO Remover em producao
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
     }
@@ -64,7 +61,6 @@ public class TutorController {
             return Response.accepted().build();
         }
         catch (Exception e) {
-            Log.info("Tutor not Found");
             return Response.serverError().build();
         }
     }
@@ -78,7 +74,6 @@ public class TutorController {
             return Response.accepted().build();
         }
         catch (Exception e) {
-            Log.info("Tutor not Found");
             return Response.serverError().build();
         }
     }
@@ -92,7 +87,6 @@ public class TutorController {
             return Response.accepted().build();
         }
         catch (Exception e) {
-            Log.info("Not possible remove tutor");
             return Response.serverError().build();
         }
     }

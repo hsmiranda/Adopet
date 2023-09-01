@@ -1,6 +1,5 @@
 package br.com.abrigo;
 
-import io.quarkus.logging.Log;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.validation.ConstraintViolationException;
@@ -62,7 +61,6 @@ public class AbrigoController {
             abrigoDTO = this.service.findAbrigoById(id);
         }
         catch (Exception e) {
-            Log.info(e.getMessage());
             Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();
         }
 
@@ -80,7 +78,6 @@ public class AbrigoController {
             return Response.accepted().build();
         }
         catch (Exception e) {
-            Log.info("Abrigo not Found");
             return Response.serverError().build();
         }
     }
@@ -95,7 +92,6 @@ public class AbrigoController {
             return Response.accepted().build();
         }
         catch (Exception e) {
-            Log.info("Abrigo ID not Found");
             return Response.serverError().build();
         }
     }

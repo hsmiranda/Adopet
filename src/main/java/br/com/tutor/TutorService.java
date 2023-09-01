@@ -55,9 +55,7 @@ public class TutorService {
 
     public TutorDTO searchTutorById(Long id) throws Exception {
 
-        TutorDTO tutorDTO;
-
-        tutorDTO = parse.entityToDTO(repository.findById(id));
+        TutorDTO tutorDTO = parse.entityToDTO(repository.findById(id));
 
         if (tutorDTO == null) {
             throw new Exception("Tutor not found");
