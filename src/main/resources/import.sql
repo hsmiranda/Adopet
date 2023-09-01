@@ -115,3 +115,6 @@ insert into tbl_abrigo (pk_long_id, txt_name, txt_city, txt_phone) values (nextv
 insert into tbl_abrigo (pk_long_id, txt_name, txt_city, txt_phone) values (nextval('tbl_abrigo_id_seq'), 'abrigo 38','Brasilia','11123456789');
 insert into tbl_abrigo (pk_long_id, txt_name, txt_city, txt_phone) values (nextval('tbl_abrigo_id_seq'), 'abrigo 41','Belo Horizonte','11123456789');
 insert into tbl_abrigo (pk_long_id, txt_name, txt_city, txt_phone) values (nextval('tbl_abrigo_id_seq'), 'abrigo 56','Curitiba','11123456789');
+
+
+insert into tbl_pet (pk_long_id, enum_specie, txt_city, txt_name, int_age, txt_personality, txt_size, fk_abrigo_id, bl_adotado) values (nextval('tbl_pet_seq'), 'Dog','Sao Paulo', 'caramelo', '5', 'docil e doido', 'medio', '1', false );
