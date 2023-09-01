@@ -13,7 +13,9 @@ create sequence tbl_pet_seq increment by 50;
 
 alter sequence tbl_pet_seq owner to postgres;
 
-CREATE TYPE enum_specie AS ENUM ('Dog', 'Cat');
+create type enum_specie as enum ('DOG', 'CAT');
+
+alter type enum_specie owner to postgres;
 
 create table tbl_pet
 (
@@ -25,6 +27,8 @@ create table tbl_pet
     txt_personality varchar(255) not null,
     txt_size        varchar(255) not null,
     fk_abrigo_id    bigint not null,
+    bl_adotado      boolean default true,
+    txt_url_photo   varchar(255) not null,
     foreign key (fk_abrigo_id) references tbl_abrigo (pk_long_id)
 );
 
