@@ -1,7 +1,9 @@
 package br.com.pet;
 
+import br.com.abrigo.AbrigoEntity;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.ws.rs.BadRequestException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,5 +28,26 @@ public class PetService {
         );
 
         return petDTOS;
+    }
+
+    public PetDTO create(PetDTO petDTO) {
+
+        if(petDTO.id() != null) {
+            throw new BadRequestException("Dont send ID in post");
+        }
+        else {
+            PetEntity p = this.parse.dtoToEntity(petDTO);
+            this.repository.persist(p);
+            return this.parse.entityToDto(p);
+        }
+    }
+
+    public void update(Long id, PetDTO petDTO) {
+    }
+
+    public void updatePartial(Long id, PetDTO petDTO) {
+    }
+
+    public void delete(Long id) {
     }
 }
