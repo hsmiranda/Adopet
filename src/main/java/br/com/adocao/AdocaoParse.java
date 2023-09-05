@@ -1,6 +1,5 @@
 package br.com.adocao;
 
-import br.com.pet.PetDTO;
 import br.com.pet.PetParse;
 import br.com.tutor.TutorParse;
 import jakarta.enterprise.context.ApplicationScoped;
