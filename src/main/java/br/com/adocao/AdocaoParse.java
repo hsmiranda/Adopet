@@ -3,11 +3,16 @@ package br.com.adocao;
 import br.com.pet.PetDTO;
 import br.com.pet.PetParse;
 import br.com.tutor.TutorParse;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
+@ApplicationScoped
 public class AdocaoParse {
 
+    @Inject
     TutorParse tutorParse;
 
+    @Inject
     PetParse petParse;
 
     public AdocaoDTO entityToDto(AdocaoEntity entidade){
