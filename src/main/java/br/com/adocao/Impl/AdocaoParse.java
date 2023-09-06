@@ -1,19 +1,22 @@
-package br.com.adocao;
+package br.com.adocao.Impl;
 
+import br.com.adocao.AdocaoDTO;
+import br.com.adocao.AdocaoEntity;
+import br.com.adocao.IAdocaoParse;
 import br.com.pet.PetParse;
 import br.com.tutor.TutorParse;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 @ApplicationScoped
-public class AdocaoParse {
+public class AdocaoParse implements IAdocaoParse {
 
     @Inject
     TutorParse tutorParse;
 
     @Inject
     PetParse petParse;
-
+    @Override
     public AdocaoDTO entityToDto(AdocaoEntity entidade){
         return new AdocaoDTO(
                 entidade.getId(),
@@ -22,7 +25,7 @@ public class AdocaoParse {
                 entidade.getData()
         );
     }
-
+    @Override
     public AdocaoEntity dtoToEntity(AdocaoDTO adocaoDTO) {
         return new AdocaoEntity(
                 adocaoDTO.id(),
