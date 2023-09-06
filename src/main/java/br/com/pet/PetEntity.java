@@ -20,8 +20,9 @@ import lombok.NoArgsConstructor;
 public class PetEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "pk_long_id")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_pk_tbl_pet")
+    @SequenceGenerator(name = "seq_pk_tbl_pet", sequenceName = "seq_pk_tbl_pet")
+    @Column(name = "pk_long_pet_id")
     private Long id;
 
     @Column(name = "txt_name",nullable = false)
@@ -48,7 +49,7 @@ public class PetEntity {
     private SpecieEnum specie;
 
     @OneToOne
-    @JoinColumn(name = "fk_abrigo_id", referencedColumnName = "pk_long_id")
+    @JoinColumn(name = "fk_abrigo_id", referencedColumnName = "pk_long_abrigo_id")
     private AbrigoEntity abrigo;
 
     @Column(name = "bl_adotado", columnDefinition = "boolean default true")

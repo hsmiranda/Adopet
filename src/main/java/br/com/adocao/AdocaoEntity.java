@@ -21,14 +21,14 @@ public class AdocaoEntity {
 
     @Id
     @GeneratedValue(generator = "seq_tbl_adocao_pk", strategy = GenerationType.SEQUENCE)
-    @Column(name = "pk_long_id")
+    @Column(name = "pk_long_adocao_id")
     private Long id;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "tbl_tutor")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "fk_long_tutor_id", referencedColumnName = "pk_long_tutor_id")
     private TutorEntity tutor;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH, mappedBy = "tbl_pet")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "fk_long_pet_id", referencedColumnName = "pk_long_pet_id")
     private PetEntity pet;
 

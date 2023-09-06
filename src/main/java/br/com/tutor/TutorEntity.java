@@ -19,7 +19,9 @@ import lombok.NoArgsConstructor;
 public class TutorEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_pk_tbl_tutor")
+    @SequenceGenerator(name = "seq_pk_tbl_tutor", sequenceName = "seq_pk_tbl_tutor")
+    @Column(name = "pk_long_tutor_id")
     private Long id;
 
     @Column(name = "txt_username", nullable = false)

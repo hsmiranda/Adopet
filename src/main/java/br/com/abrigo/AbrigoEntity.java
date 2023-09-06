@@ -18,9 +18,9 @@ import lombok.NoArgsConstructor;
 public class AbrigoEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tbl_abrigo_id_seq")
-    @SequenceGenerator(name = "tbl_abrigo_id_seq", sequenceName = "tbl_abrigo_id_seq")
-    @Column(name = "pk_long_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_pk_tb_abrigo")
+    @SequenceGenerator(name = "seq_pk_tb_abrigo", sequenceName = "seq_pk_tb_abrigo")
+    @Column(name = "pk_long_abrigo_id")
     private Long id;
 
     @Column(name = "txt_name", nullable = false)
