@@ -20,7 +20,7 @@ public class TutorController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<TutorDTO> findAllTutors(){
-        return service.findAllTutors();
+        return this.service.findAllTutors();
     }
 
     @GET
@@ -30,7 +30,7 @@ public class TutorController {
         TutorDTO tutorDTO = null;
 
         try{
-            tutorDTO = service.searchTutorById(id);
+            tutorDTO = this.service.searchTutorById(id);
         }
         catch (Exception e) {
             Response.status(Response.Status.NOT_FOUND).entity(e.getMessage()).build();

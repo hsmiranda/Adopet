@@ -7,17 +7,21 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity(name = "tbl_tutor")
 @Table(name = "tbl_tutor")
 @Data
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 public class TutorEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_pk_tbl_tutor")
+    @SequenceGenerator(name = "seq_pk_tbl_tutor", sequenceName = "seq_pk_tbl_tutor")
+    @Column(name = "pk_long_tutor_id")
     private Long id;
 
     @Column(name = "txt_username", nullable = false)

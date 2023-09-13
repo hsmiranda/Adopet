@@ -8,18 +8,21 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity(name = "tbl_pet")
 @Table(name = "tbl_pet")
 @Data
+@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 public class PetEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "pk_long_id")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq_pk_tbl_pet")
+    @SequenceGenerator(name = "seq_pk_tbl_pet", sequenceName = "seq_pk_tbl_pet")
+    @Column(name = "pk_long_pet_id")
     private Long id;
 
     @Column(name = "txt_name",nullable = false)
@@ -46,7 +49,7 @@ public class PetEntity {
     private SpecieEnum specie;
 
     @OneToOne
-    @JoinColumn(name = "fk_abrigo_id", referencedColumnName = "pk_long_id")
+    @JoinColumn(name = "fk_abrigo_id", referencedColumnName = "pk_long_abrigo_id")
     private AbrigoEntity abrigo;
 
     @Column(name = "bl_adotado", columnDefinition = "boolean default true")
