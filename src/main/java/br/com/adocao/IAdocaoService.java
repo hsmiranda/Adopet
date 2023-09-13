@@ -8,8 +8,8 @@ public interface IAdocaoService {
 
     public AdocaoDTO create(AdocaoDTO adocaoDTO);
 
-    public AdocaoDTO update(AdocaoDTO adocaoDTO, Long id);
+    public AdocaoDTO update(AdocaoDTO adocaoDTO, Long id) throws Exception;
 
-    public void delete(Long id);
+    public void delete(Long id) throws Exception;
 
 }
